@@ -1,6 +1,9 @@
 import { logLevel } from 'kafkajs';
 import yn from 'yn';
 
+const LOG_LEVEL = logLevel.INFO;
+const LOG_JSON = false;
+
 export const config = {
     brokers: process.env.KAFKACLI_BROKERS?.split(','),
     ssl: yn(process.env.KAFKACLI_SSL) || false,
@@ -11,10 +14,14 @@ export const config = {
               password: process.env.KAFKACLI_SASL_PASSWORD,
           }
         : undefined,
-    logLevel: logLevel.INFO,
+    logLevel: LOG_LEVEL,
     logCreator: (level) => (entry) => {
-        const message = `[${entry.namespace}] ${entry.log.message}`;
-        getLogger(level)(message, entry.log);
+        if (LOG_JSON) {
+            getLogger(level)(entry.log);
+        } else {
+            const message = `[${entry.namespace}] ${entry.log.message}`;
+            getLogger(level)(message);
+        }
     },
 };
 

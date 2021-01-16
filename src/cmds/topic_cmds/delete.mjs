@@ -5,8 +5,24 @@ export default {
     desc: 'Delete topics',
     builder: {},
     handler: async function (argv) {
-        const topics = [].concat(argv.name).concat(argv.names);
+        let topics = []
+            .concat(argv.name)
+            .concat(argv.names)
+            .filter((t) => t);
+
+        let ignored;
+        if (topics.length > 1 && topics.find((t) => t.startsWith('__'))) {
+            ignored = topics.filter((t) => t.startsWith('__'));
+            topics = topics.filter((t) => !t.startsWith('__'));
+        }
+
         await kafka.deleteTopics(topics);
-        console.log(`topics deleted: ${topics.join(', ')}`);
+
+        topics.forEach((t) => console.log(`deleted:\t${t}`));
+
+        if (ignored) {
+            ignored.forEach((t) => console.log(`ignored:\t${t}`));
+            console.warn('\nWarning: system topics are ignored when deleting more than one topic');
+        }
     },
 };
