@@ -11,14 +11,15 @@ export default {
             .filter((t) => t);
 
         let ignored;
-        if (topics.length > 1 && topics.find((t) => t.startsWith('__'))) {
-            ignored = topics.filter((t) => t.startsWith('__'));
-            topics = topics.filter((t) => !t.startsWith('__'));
+        if (topics.length > 1 && topics.find((t) => t.startsWith('_'))) {
+            ignored = topics.filter((t) => t.startsWith('_'));
+            topics = topics.filter((t) => !t.startsWith('_'));
         }
 
-        await kafka.deleteTopics(topics);
-
-        topics.forEach((t) => console.log(`deleted:\t${t}`));
+        for await (let topic of topics) {
+            await kafka.deleteTopic(topic);
+            console.log(`topic deleted: ${topic}`);
+        }
 
         if (ignored) {
             ignored.forEach((t) => console.log(`ignored:\t${t}`));

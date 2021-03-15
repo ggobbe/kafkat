@@ -24,8 +24,9 @@ async function createTopic(topic, topicConfig) {
     });
 }
 
-async function deleteTopics(topics) {
-    return await kafkaAdmin.deleteTopics({ topics: topics });
+async function deleteTopic(topic) {
+    // only allow delete one by one to prevent timeout
+    return await kafkaAdmin.deleteTopics({ topics: [topic], timeout: 10000 });
 }
 
 async function produce(topic, key, buffer) {
@@ -59,7 +60,9 @@ async function consume(groupId, topics, handler, fromBeginning = false) {
 
     await consumer.run({
         autoCommitThreshold: AUTO_COMMIT_THRESHOLD,
-        eachMessage: async (payload) => {await handler(payload.message.value)},
+        eachMessage: async (payload) => {
+            await handler(payload.message.value);
+        },
     });
 }
 
@@ -71,7 +74,7 @@ async function disconnect() {
 export default {
     createTopic,
     listTopics,
-    deleteTopics,
+    deleteTopic,
     produce,
     consume,
     disconnect,
