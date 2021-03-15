@@ -6,7 +6,7 @@ import { commands } from './cmds/index.mjs';
 import kafka from './kafka/kafka.mjs';
 
 if(!process.env.KAFKACLI_BROKERS) {
-    console.warn(`To configure kafka-cli, set the following environment variables (cf. README.md):
+    console.warn(`To configure kafkat, set the following environment variables (cf. README.md):
     - KAFKACLI_BROKERS
     - KAFKACLI_SSL (optional)
     - KAFKACLI_SASL_MECHANISM (optional)
@@ -17,7 +17,7 @@ if(!process.env.KAFKACLI_BROKERS) {
 }
 
 yargs(hideBin(process.argv))
-    .scriptName('kafka-cli')
+    .scriptName('kafkat')
     .command(commands)
     .demandCommand(1)
     .onFinishCommand(() => {

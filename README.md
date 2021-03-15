@@ -1,4 +1,4 @@
-# kafka-cli
+# kafkat
 
 ## Installation
 
@@ -26,73 +26,73 @@ Name | Description
 
 ### List topics
 ```
-kafka-cli topic list [filter-regex] [--json]
+kafkat topic list [filter-regex] [--json]
 
 # Example
-kafka-cli topic list              # list all topics
-kafka-cli topic list '^alpha.'    # list topics starting with alpha
-kafka-cli topic list --json       # list all topics as json
+kafkat topic list              # list all topics
+kafkat topic list '^alpha.'    # list topics starting with alpha
+kafkat topic list --json       # list all topics as json
 ```
 
 ### Create topic
 ```
-kafka-cli topic create <topic-name> [--part] [--repl]
+kafkat topic create <topic-name> [--part] [--repl]
 
 # Examples
-kafka-cli topic create orders-topic            # create topic 'orders-topic'
-kafka-cli topic create todo-topic --part 12    # create topic with 6 partitions
-kafka-cli topic create some-topic --repl 3     # create topic with 3 as replication factor
-kafka-cli topic create else-topic --part 6 --repl 1
+kafkat topic create orders-topic            # create topic 'orders-topic'
+kafkat topic create todo-topic --part 12    # create topic with 6 partitions
+kafkat topic create some-topic --repl 3     # create topic with 3 as replication factor
+kafkat topic create else-topic --part 6 --repl 1
 ```
 
 ### Delete topics
 ```
-kafka-cli topic delete <topic-names...>
+kafkat topic delete <topic-names...>
 
 # Delete one or many topics
-kafka-cli topic delete orders-topic
-kafka-cli topic delete orders-topic todo-topic some-topic else-topic
+kafkat topic delete orders-topic
+kafkat topic delete orders-topic todo-topic some-topic else-topic
 ```
 
 ### Find and delete topics
 ```
 # delete all topics starting by alpha.
-kafka-cli topic list '^alpha.' | xargs kafka-cli topic delete
+kafkat topic list '^alpha.' | xargs kafkat topic delete
 ```
 
 ### Produce message to topic
 ```
 # Usage
-kafka-cli produce <topic-name> <message> [--avdl] [--avsc] [--num]
+kafkat produce <topic-name> <message> [--avdl] [--avsc] [--num]
 
 # Produce messages
-kafka-cli produce orders-topic 'some cheese'                # produce message 'some cheese' on orders-topic
-kafka-cli produce orders-topic 'lot of cheese' --num 100    # produce 100 times message
+kafkat produce orders-topic 'some cheese'                # produce message 'some cheese' on orders-topic
+kafkat produce orders-topic 'lot of cheese' --num 100    # produce 100 times message
 
 # With schema-registry
-kafka-cli produce todo-topic '{ "title": "buy milk", "dueDate": "2021-02-09" }' --avdl=todo.avdl
-kafka-cli produce milk-topic '{ "name": "can of milk", "amount": "12" }' --avsc=milk.avsc
+kafkat produce todo-topic '{ "title": "buy milk", "dueDate": "2021-02-09" }' --avdl=todo.avdl
+kafkat produce milk-topic '{ "name": "can of milk", "amount": "12" }' --avsc=milk.avsc
 ```
 
 ### Consume messages from topic
 ```
-kafka-cli consume <topic-name> [--earliest] [--schema] [--grp=group-id]
+kafkat consume <topic-name> [--earliest] [--schema] [--grp=group-id]
 
 # Examples
-kafka-cli consume orders-topic               # consume messages from orders-topic from random group id
-kafka-cli consume orders-topic --grp kcli    # consume messages from orders-topic with group id 'kcli'
-kafka-cli consume orders-topic --earliest    # consume messages from beginning (only if new group id)
-kafka-cli consume orders-topic --schema      # decode consumed messages with schema registry
+kafkat consume orders-topic               # consume messages from orders-topic from random group id
+kafkat consume orders-topic --grp kcli    # consume messages from orders-topic with group id 'kcli'
+kafkat consume orders-topic --earliest    # consume messages from beginning (only if new group id)
+kafkat consume orders-topic --schema      # decode consumed messages with schema registry
 ```
 
 ### Generate typescript interface from avro schema
 ```
-kafka-cli avro-ts [--registryId] [--subject] [--avsc]
+kafkat avro-ts [--registryId] [--subject] [--avsc]
 
 # Examples
-kafka-cli avro-ts orders-topic --avsc schema.avsc        # generate typescript from avsc file
-kafka-cli avro-ts orders-topic --registryId 98           # generate typescript from schema with id 98 in schema registry
-kafka-cli avro-ts orders-topic --subject orders-value    # generate typescript from subject's latest version in schema registry
+kafkat avro-ts orders-topic --avsc schema.avsc        # generate typescript from avsc file
+kafkat avro-ts orders-topic --registryId 98           # generate typescript from schema with id 98 in schema registry
+kafkat avro-ts orders-topic --subject orders-value    # generate typescript from subject's latest version in schema registry
 
 ```
 

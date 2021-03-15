@@ -1,5 +1,5 @@
 {
-  "name": "kafka-cli",
+  "name": "kafkat",
   "author": "ggobbe",
   "version": "1.0.0",
   "license": "MIT",
@@ -10,14 +10,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ggobbe/kafka-cli"
+    "url": "https://github.com/ggobbe/kafkat"
   },
   "main": "src/index.js",
   "type": "module",
   "preferGlobal": true,
   "bin": {
-    "@ggobbe/kafka-cli": "./src/index.js",
-    "kafka-cli": "./src/index.js"
+    "kafkat": "./src/index.js"
   },
   "engines": {
     "node": ">=14.0.0"
