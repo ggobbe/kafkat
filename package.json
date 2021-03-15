@@ -1,9 +1,27 @@
 {
   "name": "kafka-cli",
-  "type": "module",
+  "author": "ggobbe",
   "version": "1.0.0",
-  "main": "src/index.js",
   "license": "MIT",
+  "description": "cli to perform some kafka operations",
+  "keywords": [
+    "cli",
+    "kafka"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ggobbe/kafka-cli"
+  },
+  "main": "src/index.js",
+  "type": "module",
+  "preferGlobal": true,
+  "bin": {
+    "@ggobbe/kafka-cli": "./src/index.js",
+    "kafka-cli": "./src/index.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@kafkajs/confluent-schema-registry": "^1.0.6",
     "@types/node": "^14.14.31",
