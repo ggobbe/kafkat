@@ -1,7 +1,7 @@
 {
   "name": "kafkat",
   "author": "ggobbe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "description": "cli to perform some kafka operations",
   "keywords": [

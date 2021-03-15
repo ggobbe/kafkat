@@ -21,8 +21,12 @@ export default {
             groupId,
             [argv.topic],
             async (buffer) => {
-                const message = argv.schema ? await registry.decode(buffer) : Buffer.from(buffer).toString();
-                console.log(`[${++count}] ${message}`);
+                try {
+                    const message = argv.schema ? await registry.decode(buffer) : Buffer.from(buffer).toString();
+                    console.log(`[${++count}] ${message}`);
+                } catch (err) {
+                    console.error('error reading message:', err);
+                }
             },
             !!argv.earliest // from beginning
         );
