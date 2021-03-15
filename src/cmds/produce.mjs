@@ -13,7 +13,7 @@ export default {
             const payload = JSON.parse(argv.message);
 
             const registry = new SchemaRegistry(
-                { host: process.env.KAFKACLI_SCHEMA_REGISTRY },
+                { host: process.env.KAFKAT_SCHEMA_REGISTRY },
                 { forSchemaOptions: { wrapUnions: false } }
             );
 

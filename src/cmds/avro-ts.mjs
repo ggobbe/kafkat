@@ -9,7 +9,7 @@ export default {
     handler: async function (argv) {
         if (argv.registryId || argv.subject) {
             const registry = new SchemaRegistry(
-                { host: process.env.KAFKACLI_SCHEMA_REGISTRY },
+                { host: process.env.KAFKAT_SCHEMA_REGISTRY },
                 { forSchemaOptions: { wrapUnions: false } }
             );
 

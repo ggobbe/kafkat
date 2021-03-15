@@ -12,7 +12,7 @@ export default {
         console.log(`Consumer ${groupId} on topic ${argv.topic} - press Ctrl+C to exit\n`);
 
         const registry = new SchemaRegistry(
-            { host: process.env.KAFKACLI_SCHEMA_REGISTRY },
+            { host: process.env.KAFKAT_SCHEMA_REGISTRY },
             { forSchemaOptions: { wrapUnions: false } }
         );
 
