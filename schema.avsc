@@ -1,0 +1,42 @@
+{
+    "type": "record",
+    "name": "SomeEnvelope",
+    "namespace": "example",
+    "fields": [
+      {
+        "name": "metadata",
+        "type": {
+          "type": "record",
+          "name": "Metadata",
+          "fields": [
+            {
+              "name": "timestamp",
+              "type": "string"
+            },
+            {
+              "name": "userId",
+              "type": [
+                "null",
+                "string"
+              ],
+              "logicalType": "uuid",
+              "default": null
+            }
+          ]
+        }
+      },
+      {
+        "name": "body",
+        "type": {
+          "type": "record",
+          "name": "Message",
+          "fields": [
+            {
+              "name": "text",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    ]
+  }

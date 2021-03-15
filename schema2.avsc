@@ -1,0 +1,36 @@
+{
+    "type": "record",
+    "name": "SomeEnvelope",
+    "namespace": "example",
+    "fields": [
+      {
+        "name": "metadata",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null
+      },
+      {
+        "name": "body",
+        "type": [
+          "null",
+          {
+            "type": "record",
+            "name": "EventBody",
+            "fields": [
+              {
+                "name": "message",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "default": null
+      }
+    ]
+  }

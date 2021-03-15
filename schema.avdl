@@ -1,0 +1,12 @@
+@namespace("test.unions")
+protocol TestProtocol {
+  record EventBody {
+    string message;
+  }
+
+  record SomeEnvelope {
+    string metadata;
+    union {null, string} title = null;
+    union {null, EventBody} body = null;
+  }
+}
