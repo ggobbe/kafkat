@@ -1,14 +1,10 @@
 # kafkat
 
-## Installation
+## Disclaimer
 
-Install dependencies with `yarn`
+Use at your own risk.
 
-## Run
-
-Run `yarn start`
-
-## Environment variables
+## Setup
 
 Add these environment variables to connect to your kafka cluster.
 
