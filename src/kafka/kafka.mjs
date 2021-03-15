@@ -1,8 +1,8 @@
 import { Kafka } from 'kafkajs';
 import { config } from './config.mjs';
 
-const MAX_IN_FLIGHT_REQUESTS = 1;
-const AUTO_COMMIT_THRESHOLD = 1;
+const MAX_IN_FLIGHT_REQUESTS = null; // e.g. 1
+const AUTO_COMMIT_THRESHOLD = null;  // e.g. 100
 const ACKS = -1;
 
 const kafka = new Kafka(config);
