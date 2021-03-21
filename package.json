@@ -26,7 +26,10 @@
     "@types/node": "^14.14.31",
     "avro-typescript": "^1.1.0",
     "avsc": "^5.5.3",
+    "cli-progress": "^3.9.0",
+    "colors": "^1.4.0",
     "kafkajs": "^1.15.0",
+    "pad": "^3.2.0",
     "uuid": "^8.3.2",
     "yargs": "^16.2.0",
     "yn": "^4.0.0"
