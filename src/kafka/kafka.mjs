@@ -2,7 +2,7 @@ import { Kafka } from 'kafkajs';
 import { config } from './config.mjs';
 
 const MAX_IN_FLIGHT_REQUESTS = null; // e.g. 1
-const AUTO_COMMIT_THRESHOLD = null;  // e.g. 100
+const AUTO_COMMIT_THRESHOLD = null; // e.g. 100
 const ACKS = -1;
 
 const kafka = new Kafka(config);
@@ -27,6 +27,22 @@ async function createTopic(topic, topicConfig) {
 async function deleteTopic(topic) {
     // only allow delete one by one to prevent timeout
     return await kafkaAdmin.deleteTopics({ topics: [topic], timeout: 10000 });
+}
+
+async function fetchTopicOffsets(topic) {
+    return await kafkaAdmin.fetchTopicOffsets(topic);
+}
+
+async function fetchOffsets(groupId, topic) {
+    return await kafkaAdmin.fetchOffsets({ groupId: groupId, topic: topic });
+}
+
+async function listGroups() {
+    return (await kafkaAdmin.listGroups()).groups;
+}
+
+async function describeGroup(groupId) {
+    return await kafkaAdmin.describeGroups([groupId]);
 }
 
 async function produce(topic, key, buffer) {
@@ -75,6 +91,10 @@ export default {
     createTopic,
     listTopics,
     deleteTopic,
+    fetchTopicOffsets,
+    fetchOffsets,
+    listGroups,
+    describeGroup,
     produce,
     consume,
     disconnect,

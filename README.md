@@ -81,6 +81,15 @@ kafkat consume orders-topic --earliest    # consume messages from beginning (onl
 kafkat consume orders-topic --schema      # decode consumed messages with schema registry
 ```
 
+### Retrieve consumer group offsets
+```
+kafkat offsets <groupId> [--topic] [--regex]
+
+# Examples
+kafkat offsets consumer-group-1 --topic orders-topic    # get per partition offsets for a topic
+kafkat offsets consumer-group-2 --regex '^alpha.'       # get aggregated offsets for topics matching regex
+```
+
 ### Generate typescript interface from avro schema
 ```
 kafkat avro-ts [--registryId] [--subject] [--avsc]
@@ -89,7 +98,6 @@ kafkat avro-ts [--registryId] [--subject] [--avsc]
 kafkat avro-ts orders-topic --avsc schema.avsc        # generate typescript from avsc file
 kafkat avro-ts orders-topic --registryId 98           # generate typescript from schema with id 98 in schema registry
 kafkat avro-ts orders-topic --subject orders-value    # generate typescript from subject's latest version in schema registry
-
 ```
 
 ## Configuration examples
