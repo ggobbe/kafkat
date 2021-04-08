@@ -37,6 +37,10 @@ async function fetchOffsets(groupId, topic) {
     return await kafkaAdmin.fetchOffsets({ groupId: groupId, topic: topic });
 }
 
+async function resetOffsets(groupId, topic, earliest) {
+    return await kafkaAdmin.resetOffsets({ groupId, topic, earliest });
+}
+
 async function listGroups() {
     return (await kafkaAdmin.listGroups()).groups;
 }
@@ -96,6 +100,7 @@ export default {
     listGroups,
     describeGroup,
     produce,
+    resetOffsets,
     consume,
     disconnect,
 };
