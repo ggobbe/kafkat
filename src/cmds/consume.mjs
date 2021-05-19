@@ -22,8 +22,11 @@ export default {
             [argv.topic],
             async (buffer) => {
                 try {
-                    const message = argv.schema ? await registry.decode(buffer) : Buffer.from(buffer).toString();
-                    console.log(`[${++count}] ${message}`);
+                    let message = null;
+                    if(buffer) {
+                        message = argv.schema ? await registry.decode(buffer) : Buffer.from(buffer).toString();
+                    }
+                    console.log(`[${++count}] ${message ?? '<NULL>'}`);
                 } catch (err) {
                     console.error('error reading message:', err);
                 }
