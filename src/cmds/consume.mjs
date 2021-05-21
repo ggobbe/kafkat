@@ -23,7 +23,7 @@ export default {
             async (buffer) => {
                 try {
                     let message = null;
-                    if(buffer) {
+                    if (buffer) {
                         message = argv.schema ? await registry.decode(buffer) : Buffer.from(buffer).toString();
                     }
                     console.log(`[${++count}] ${message ?? '<NULL>'}`);
