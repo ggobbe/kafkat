@@ -8,6 +8,9 @@ const ACKS = -1;
 const kafka = new Kafka(config);
 const kafkaAdmin = kafka.admin();
 let kafkaProducer;
+const consumers = new Map();
+
+registerExitSignals();
 
 async function listTopics() {
     return await kafkaAdmin.listTopics();
@@ -71,6 +74,7 @@ async function consume(groupId, topics, handler, fromBeginning = false) {
     });
 
     await consumer.connect();
+    consumers.set(groupId, consumer);
 
     const topicPromises = topics.map(async (topic) => {
         await consumer.subscribe({ topic: topic, fromBeginning: fromBeginning });
@@ -86,9 +90,49 @@ async function consume(groupId, topics, handler, fromBeginning = false) {
     });
 }
 
+async function deleteConsumerGroups() {
+    for (let [groupId, consumer] of consumers) {
+        console.log(`\nDeleting consumer group: ${groupId}`);
+
+        await consumer.disconnect();
+        console.log('✓ disconnected');
+
+        await kafkaAdmin.deleteGroups([groupId]);
+        console.log('✓ deleted');
+    }
+}
+
 async function disconnect() {
     await kafkaAdmin.disconnect();
     await kafkaProducer?.disconnect();
+}
+
+async function registerExitSignals() {
+    const errorTypes = ['unhandledRejection', 'uncaughtException'];
+    const signalTraps = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
+
+    errorTypes.map((type) => {
+        process.on(type, async (e) => {
+            try {
+                console.log(`process.on ${type}`);
+                console.error(e);
+                await deleteConsumerGroups();
+                process.exit(0);
+            } catch (_) {
+                process.exit(1);
+            }
+        });
+    });
+
+    signalTraps.map((type) => {
+        process.once(type, async () => {
+            try {
+                await deleteConsumerGroups();
+            } finally {
+                process.kill(process.pid, type);
+            }
+        });
+    });
 }
 
 export default {
