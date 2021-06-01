@@ -41,54 +41,6 @@ async function resetOffsets(groupId, topic, earliest) {
     return await kafkaAdmin.resetOffsets({ groupId, topic, earliest });
 }
 
-async function setRetentionMs(topic) {
-    console.log(`>>> TOPIC: ${topic}`)
-    const config1 = await kafkaAdmin.describeConfigs({
-        includeSynonyms: false,
-        resources: [
-            {
-                type: 2, // TOPIC
-                name: topic,
-            },
-        ],
-    });
-
-    config1.resources[0].configEntries.forEach((ce) => {
-        if (ce.configName.match(/retention/)) {
-            console.log(JSON.stringify(ce));
-        }
-    });
-
-    console.log('================= Updating ...');
-    await kafkaAdmin.alterConfigs({
-        resources: [
-            {
-                type: 2,
-                name: topic,
-                configEntries: [{ name: 'retention.ms', value: '86400000' }],
-            },
-        ],
-    });
-
-    console.log('UPDATED =================');
-
-    const config2 = await kafkaAdmin.describeConfigs({
-        includeSynonyms: false,
-        resources: [
-            {
-                type: 2, // TOPIC
-                name: topic,
-            },
-        ],
-    });
-
-    config2.resources[0].configEntries.forEach((ce) => {
-        if (ce.configName.match(/retention/)) {
-            console.log(JSON.stringify(ce));
-        }
-    });
-}
-
 async function listGroups() {
     return (await kafkaAdmin.listGroups()).groups;
 }
@@ -151,5 +103,4 @@ export default {
     resetOffsets,
     consume,
     disconnect,
-    setRetentionMs,
 };
