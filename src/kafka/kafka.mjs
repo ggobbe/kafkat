@@ -91,7 +91,7 @@ async function consume(groupId, topics, handler, fromBeginning = false) {
 }
 
 async function deleteConsumerGroups() {
-    for (let [groupId, consumer] of consumers) {
+    for await (let [groupId, consumer] of consumers) {
         console.log(`\nDeleting consumer group: ${groupId}`);
 
         await consumer.disconnect();
