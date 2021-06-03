@@ -7,7 +7,7 @@ export default {
     desc: 'Consume messages on a topic',
     builder: {},
     handler: async function (argv) {
-        const groupId = argv.grp ?? uuid.v4();
+        const groupId = argv.grp ?? `kafkat-${uuid.v4()}`;
 
         console.log(`Consumer ${groupId} on topic ${argv.topic} - press Ctrl+C to exit\n`);
 
