@@ -13,7 +13,9 @@ export default {
 
         const registry = new SchemaRegistry(
             { host: process.env.KAFKAT_SCHEMA_REGISTRY },
-            { forSchemaOptions: { wrapUnions: false } }
+            // Temporary fix to prevent errors when consuming from a topic where the subject contains more than one version of the same schema
+            // More details on https://github.com/kafkajs/confluent-schema-registry/issues/75
+            // { forSchemaOptions: { wrapUnions: false } }
         );
 
         let count = 0;
