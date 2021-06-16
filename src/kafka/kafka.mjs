@@ -90,6 +90,10 @@ async function consume(groupId, topics, handler, fromBeginning = false) {
     });
 }
 
+async function deleteSingleConsumerGroup(groupId) {
+  return await kafkaAdmin.deleteGroups([groupId]);
+}
+
 async function deleteConsumerGroups() {
     for await (let [groupId, consumer] of consumers) {
         console.log(`\nDeleting consumer group: ${groupId}`);
@@ -147,4 +151,5 @@ export default {
     resetOffsets,
     consume,
     disconnect,
+    deleteSingleConsumerGroup,
 };
