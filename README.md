@@ -90,6 +90,15 @@ kafkat offsets consumer-group-1 --topic orders-topic    # get per partition offs
 kafkat offsets consumer-group-2 --regex '^alpha.'       # get aggregated offsets for topics matching regex
 ```
 
+### Manage consumer groups
+```
+kafkat consumer-group <groupId> [aliases: cm]
+
+# Examples
+kafkat consumer-group delete my-consumer-group-id  # delete a consumer group
+kafkat cm delete my-consumer-group-id
+```
+
 ### Generate typescript interface from avro schema
 ```
 kafkat avro-ts [--registryId] [--subject] [--avsc]
