@@ -151,5 +151,5 @@ Feel free to send Pull Requests.
 
 ## Tested with
 
-- Node 14.15
-- yarn 1.22.10
+- Node 16.13.0
+- npm 8.1.4
