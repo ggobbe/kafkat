@@ -20,6 +20,5 @@ yargs(hideBin(process.argv))
     .scriptName('kafkat')
     .command(commands)
     .demandCommand(1)
-    .onFinishCommand(() => {
-        kafka.disconnect();
-    }).argv;
+    .parse()
+    .then(kafka.disconnect);
