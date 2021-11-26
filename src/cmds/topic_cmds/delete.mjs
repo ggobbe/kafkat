@@ -5,20 +5,26 @@ export default {
     desc: 'Delete topics',
     builder: {},
     handler: async function (argv) {
-        let topics = []
+        let toDeleteTopic = []
             .concat(argv.name)
             .concat(argv.names)
             .filter((t) => t);
 
         let ignored;
-        if (topics.length > 1 && topics.find((t) => t.startsWith('_'))) {
-            ignored = topics.filter((t) => t.startsWith('_'));
-            topics = topics.filter((t) => !t.startsWith('_'));
+        if (toDeleteTopic.length > 1 && toDeleteTopic.find((t) => t.startsWith('_'))) {
+            ignored = toDeleteTopic.filter((t) => t.startsWith('_'));
+            toDeleteTopic = toDeleteTopic.filter((t) => !t.startsWith('_'));
         }
 
-        for await (let topic of topics) {
-            await kafka.deleteTopic(topic);
-            console.log(`topic deleted: ${topic}`);
+        const existingTopic = await kafka.listTopics();
+
+        for await (let topic of toDeleteTopic) {
+            if (existingTopic.includes(topic)) {
+                await kafka.deleteTopic(topic);
+                console.log(`✓ topic deleted: ${topic}`);
+            } else {
+                console.log(`✗ topic not found: ${topic}`);
+            }
         }
 
         if (ignored) {

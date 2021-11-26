@@ -27,9 +27,9 @@ async function createTopic(topic, topicConfig) {
     });
 }
 
+// only delete topics one by one to prevent timeout
 async function deleteTopic(topic) {
-    // only allow delete one by one to prevent timeout
-    return await kafkaAdmin.deleteTopics({ topics: [topic], timeout: 10000 });
+    await kafkaAdmin.deleteTopics({ topics: [topic], timeout: 10000 });
 }
 
 async function fetchTopicOffsets(topic) {
@@ -91,7 +91,7 @@ async function consume(groupId, topics, handler, fromBeginning = false) {
 }
 
 async function deleteSingleConsumerGroup(groupId) {
-  return await kafkaAdmin.deleteGroups([groupId]);
+    return await kafkaAdmin.deleteGroups([groupId]);
 }
 
 async function deleteConsumerGroups() {
