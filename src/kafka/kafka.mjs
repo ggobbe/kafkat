@@ -18,6 +18,8 @@ async function listTopics() {
 
 async function createTopic(topic, topicConfig) {
     return await kafkaAdmin.createTopics({
+        waitForLeaders: true,
+        timeout: 10_000,
         topics: [
             {
                 topic,
