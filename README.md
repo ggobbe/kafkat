@@ -100,9 +100,9 @@ kafkat cm delete my-consumer-group-id
 kafkat avro-ts [--registryId] [--subject] [--avsc]
 
 # Examples
-kafkat avro-ts orders-topic --avsc schema.avsc        # generate typescript from avsc file
-kafkat avro-ts orders-topic --registryId 98           # generate typescript from schema with id 98 in schema registry
-kafkat avro-ts orders-topic --subject orders-value    # generate typescript from subject's latest version in schema registry
+kafkat avro-ts --avsc schema.avsc        # generate typescript from avsc file
+kafkat avro-ts --registryId 98           # generate typescript from schema with id 98 in schema registry
+kafkat avro-ts --subject orders-value    # generate typescript from subject's latest version in schema registry
 ```
 
 ## Configuration examples
