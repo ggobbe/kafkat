@@ -1,4 +1,4 @@
-import { Kafka } from 'kafkajs';
+import { Kafka, Partitioners } from 'kafkajs';
 import { config } from './config.mjs';
 
 const MAX_IN_FLIGHT_REQUESTS = null; // e.g. 1
@@ -59,6 +59,7 @@ async function produce(topic, key, buffer) {
         kafkaProducer = kafka.producer({
             maxInFlightRequests: MAX_IN_FLIGHT_REQUESTS,
             allowAutoTopicCreation: false,
+            createPartitioner: Partitioners.DefaultPartitioner,
         });
         await kafkaProducer.connect();
     }

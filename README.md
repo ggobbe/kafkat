@@ -1,9 +1,5 @@
 # kafkat
 
-## Disclaimer
-
-Use at your own risk.
-
 ## Setup
 
 Add these environment variables to connect to your kafka cluster.
@@ -151,5 +147,5 @@ Feel free to send Pull Requests.
 
 ## Tested with
 
-- Node 16.13.0
-- npm 8.1.4
+- Node 18.12.1
+- npm 8.19.2
