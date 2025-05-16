@@ -1,0 +1,23 @@
+<<<<<<< HEAD:src/cmds/topic.js
+import create from './topic_cmds/create.js';
+import delete_ from './topic_cmds/delete.js';
+import list from './topic_cmds/list.js';
+||||||| parent of 9265108 (feat: describe command):src/cmds/topic.mjs
+import create from './topic_cmds/create.mjs';
+import delete_ from './topic_cmds/delete.mjs';
+import list from './topic_cmds/list.mjs';
+=======
+import create from './topic_cmds/create.mjs';
+import delete_ from './topic_cmds/delete.mjs';
+import describe from './topic_cmds/describe.mjs';
+import list from './topic_cmds/list.mjs';
+>>>>>>> 9265108 (feat: describe command):src/cmds/topic.mjs
+
+export default {
+    command: 'topic <command>',
+    desc: 'Manage topics',
+    builder: function (yargs) {
+        return yargs.command([create, list, delete_, describe]).demandCommand(1);
+    },
+    handler: function () {},
+};

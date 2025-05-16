@@ -4,19 +4,19 @@
 
 Add these environment variables to connect to your kafka cluster.
 
-Name | Description
---- | ---
-`KAFKAT_BROKERS` | List of brokers (separated by comas)
-`KAFKAT_SSL` | `true` or `false`
-`KAFKAT_SASL_MECHANISM` | `PLAIN` or `SCRAM-SHA-256`
-`KAFKAT_SASL_USERNAME` | Username
-`KAFKAT_SASL_PASSWORD` | Password
-`KAFKAT_SCHEMA_REGISTRY` | Schema registry host (optional)
-
+| Name                     | Description                          |
+| ------------------------ | ------------------------------------ |
+| `KAFKAT_BROKERS`         | List of brokers (separated by comas) |
+| `KAFKAT_SSL`             | `true` or `false`                    |
+| `KAFKAT_SASL_MECHANISM`  | `PLAIN` or `SCRAM-SHA-256`           |
+| `KAFKAT_SASL_USERNAME`   | Username                             |
+| `KAFKAT_SASL_PASSWORD`   | Password                             |
+| `KAFKAT_SCHEMA_REGISTRY` | Schema registry host (optional)      |
 
 ## Commands
 
 ### List topics
+
 ```
 kafkat topic list [filter-regex] [--json]
 
@@ -26,7 +26,17 @@ kafkat topic list '^alpha.'    # list topics starting with alpha
 kafkat topic list --json       # list all topics as json
 ```
 
+### Describe topic
+
+```
+kafkat topic describe <topic-name>
+
+# Example
+kafkat topic describe orders-topic    # show detailed information about orders-topic
+```
+
 ### Create topic
+
 ```
 kafkat topic create <topic-name> [--part] [--repl]
 
@@ -38,6 +48,7 @@ kafkat topic create else-topic --part 6 --repl 1
 ```
 
 ### Delete topics
+
 ```
 kafkat topic delete <topic-names...>
 
@@ -47,12 +58,14 @@ kafkat topic delete orders-topic todo-topic some-topic else-topic
 ```
 
 ### Find and delete topics
+
 ```
 # delete all topics starting by alpha.
 kafkat topic list '^alpha.' | xargs kafkat topic delete
 ```
 
 ### Produce message to topic
+
 ```
 # Usage
 kafkat produce <topic-name> <message> [--avdl] [--avsc] [--num]
@@ -67,6 +80,7 @@ kafkat produce milk-topic '{ "name": "can of milk", "amount": "12" }' --avsc=mil
 ```
 
 ### Consume messages from topic
+
 ```
 kafkat consume <topic-name> [--earliest] [--schema] [--grp=group-id]
 
@@ -78,6 +92,7 @@ kafkat consume orders-topic --schema      # decode consumed messages with schema
 ```
 
 ### Retrieve consumer group offsets
+
 ```
 kafkat offsets <groupId> [--topic] [--regex]
 
@@ -87,6 +102,7 @@ kafkat offsets consumer-group-2 --regex '^alpha.'       # get aggregated offsets
 ```
 
 ### Manage consumer groups
+
 ```
 kafkat consumer-group <groupId> [aliases: cm]
 
@@ -96,6 +112,7 @@ kafkat cm delete my-consumer-group-id
 ```
 
 ### Generate typescript interface from avro schema
+
 ```
 kafkat avro-ts [--registryId] [--subject] [--avsc]
 
@@ -110,6 +127,7 @@ kafkat avro-ts --subject orders-value    # generate typescript from subject's la
 An easy way to switch between different configurations is to create a file `config-dev.sh` which exports environment variables. Then use `source config-dev.sh` to load them in the current shell.
 
 ### Using SASL/SCRAM on Cloud Karafka (single broker) + Schema Registry
+
 ```
 export KAFKAT_BROKERS='broker-01.srvs.cloudkafka.com:9094'
 export KAFKAT_SSL='true'
@@ -121,6 +139,7 @@ export KAFKAT_SCHEMA_REGISTRY='https://schema-registry.aws.com:8081'
 ```
 
 ### Using SASL on Confluent Cloud (3 brokers)
+
 ```
 export KAFKAT_BROKERS='confluent-cloud-01:9092,confluent-cloud-02:9092,confluent-cloud-03:9092'
 export KAFKAT_SSL='true'
@@ -130,6 +149,7 @@ export KAFKAT_SASL_PASSWORD='some-pass'
 ```
 
 ### Using local kafka instance and schema registry
+
 ```
 export KAFKAT_BROKERS='localhost:9092'
 export KAFKAT_SCHEMA_REGISTRY='http://localhost:8081'
@@ -147,5 +167,5 @@ Feel free to send Pull Requests.
 
 ## Tested with
 
-- Node 18.12.1
-- npm 8.19.2
+-   Node 18.12.1
+-   npm 8.19.2
