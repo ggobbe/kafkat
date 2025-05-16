@@ -1,4 +1,5 @@
 import { Kafka, Partitioners } from 'kafkajs';
+import process from 'node:process';
 import { config } from './config.js';
 
 const MAX_IN_FLIGHT_REQUESTS = null; // e.g. 1
@@ -125,7 +126,7 @@ async function registerExitSignals() {
                 console.error(e);
                 await deleteConsumerGroups();
                 process.exit(0);
-            } catch (_) {
+            } catch {
                 process.exit(1);
             }
         });

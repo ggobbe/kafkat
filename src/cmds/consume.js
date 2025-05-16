@@ -1,4 +1,5 @@
 import { SchemaRegistry } from '@kafkajs/confluent-schema-registry';
+import process from 'node:process';
 import * as uuid from 'uuid';
 import kafka from '../kafka/kafka.js';
 

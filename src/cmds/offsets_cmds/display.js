@@ -1,6 +1,6 @@
-import kafka from '../../kafka/kafka.js';
 import progress from 'cli-progress';
 import pad from 'pad';
+import kafka from '../../kafka/kafka.js';
 
 async function displayLagPerPartition(groupId, topic) {
     const topicOffsets = await kafka.fetchTopicOffsets(topic);

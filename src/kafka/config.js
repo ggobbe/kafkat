@@ -1,4 +1,5 @@
 import { logLevel } from 'kafkajs';
+import process from 'node:process';
 import yn from 'yn';
 
 const LOG_LEVEL = logLevel.INFO;

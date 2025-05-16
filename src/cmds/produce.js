@@ -1,5 +1,6 @@
 import { avdlToAVSCAsync, COMPATIBILITY, readAVSCAsync, SchemaRegistry } from '@kafkajs/confluent-schema-registry';
-import path from 'path';
+import path from 'node:path';
+import process from 'node:process';
 import kafka from '../kafka/kafka.js';
 
 export default {

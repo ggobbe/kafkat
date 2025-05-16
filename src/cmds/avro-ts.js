@@ -1,6 +1,7 @@
 import { SchemaRegistry } from '@kafkajs/confluent-schema-registry';
 import { avroToTypeScript } from 'avro-typescript';
-import fs from 'fs';
+import fs from 'node:fs';
+import process from 'node:process';
 
 export default {
     command: 'avro-ts [--registryId] [--subject] [--avsc]',
