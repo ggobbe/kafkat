@@ -1,6 +1,6 @@
 import { SchemaRegistry } from '@kafkajs/confluent-schema-registry';
 import * as uuid from 'uuid';
-import kafka from '../kafka/kafka.mjs';
+import kafka from '../kafka/kafka.js';
 
 export default {
     command: 'consume <topic> [--earliest] [--schema] [--grp=group-id]',
@@ -12,7 +12,7 @@ export default {
         console.log(`Consumer ${groupId} on topic ${argv.topic} - press Ctrl+C to exit\n`);
 
         const registry = new SchemaRegistry(
-            { host: process.env.KAFKAT_SCHEMA_REGISTRY },
+            { host: process.env.KAFKAT_SCHEMA_REGISTRY }
             // Temporary fix to prevent errors when consuming from a topic where the subject contains more than one version of the same schema
             // More details on https://github.com/kafkajs/confluent-schema-registry/issues/75
             // { forSchemaOptions: { wrapUnions: false } }

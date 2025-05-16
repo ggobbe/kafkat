@@ -1,6 +1,6 @@
 import { avdlToAVSCAsync, COMPATIBILITY, readAVSCAsync, SchemaRegistry } from '@kafkajs/confluent-schema-registry';
 import path from 'path';
-import kafka from '../kafka/kafka.mjs';
+import kafka from '../kafka/kafka.js';
 
 export default {
     command: 'produce <topic> <message> [--avdl=schema.avdl] [--avsc=schema.avsc] [--num=1]',

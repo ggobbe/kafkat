@@ -1,5 +1,5 @@
-import display from './offsets_cmds/display.mjs';
-import reset from './offsets_cmds/reset.mjs';
+import display from './offsets_cmds/display.js';
+import reset from './offsets_cmds/reset.js';
 
 export default {
     command: 'offsets <command>',

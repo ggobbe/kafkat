@@ -1,4 +1,4 @@
-import kafka from '../../kafka/kafka.mjs';
+import kafka from '../../kafka/kafka.js';
 
 export default {
     command: 'create <name> [--part] [--repl]',
@@ -10,7 +10,7 @@ export default {
             replicationFactor: argv.repl || 1,
         });
 
-        if(success) {
+        if (success) {
             console.log(`topic created: ${argv.name}`);
         } else {
             console.log(`error on creating topic: ${argv.name}`);

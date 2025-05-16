@@ -2,8 +2,8 @@
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { commands } from './cmds/index.mjs';
-import kafka from './kafka/kafka.mjs';
+import { commands } from './cmds/index.js';
+import kafka from './kafka/kafka.js';
 
 if (!process.env.KAFKAT_BROKERS) {
     console.warn(`To configure kafkat, set the following environment variables (cf. README.md):

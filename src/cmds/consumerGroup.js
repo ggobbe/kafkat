@@ -1,4 +1,4 @@
-import deleteConsumerGroup from "./consumerGroup/deleteConsumerGroup.mjs";
+import deleteConsumerGroup from './consumerGroup/deleteConsumerGroup.js';
 
 export default {
     command: ['consumer-group <command>', 'cm'],

@@ -1,4 +1,4 @@
-import kafka from '../../kafka/kafka.mjs';
+import kafka from '../../kafka/kafka.js';
 
 export default {
     command: 'delete <name> [names..]',

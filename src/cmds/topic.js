@@ -1,6 +1,6 @@
-import create from './topic_cmds/create.mjs';
-import delete_ from './topic_cmds/delete.mjs';
-import list from './topic_cmds/list.mjs';
+import create from './topic_cmds/create.js';
+import delete_ from './topic_cmds/delete.js';
+import list from './topic_cmds/list.js';
 
 export default {
     command: 'topic <command>',
