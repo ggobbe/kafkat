@@ -1,5 +1,5 @@
 import { Kafka, Partitioners } from 'kafkajs';
-import { config } from './config.mjs';
+import { config } from './config.js';
 
 const MAX_IN_FLIGHT_REQUESTS = null; // e.g. 1
 const AUTO_COMMIT_THRESHOLD = null; // e.g. 100

@@ -1,4 +1,4 @@
-import kafka from '../../kafka/kafka.mjs';
+import kafka from '../../kafka/kafka.js';
 import progress from 'cli-progress';
 import pad from 'pad';
 

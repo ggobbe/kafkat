@@ -1,7 +1,7 @@
 {
   "name": "kafkat",
   "author": "ggobbe",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "license": "MIT",
   "description": "cli to perform kafka operations (topics management, consume/produce messages with our without schemas, reset offsets)",
   "keywords": [
@@ -19,20 +19,22 @@
     "kafkat": "./src/index.js"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=20.0.0"
   },
   "dependencies": {
     "@kafkajs/confluent-schema-registry": "^3.3.0",
-    "@types/node": "^18",
     "avro-typescript": "^1.1.0",
     "avsc": "^5.7.7",
     "cli-progress": "^3.11.2",
     "colors": "^1.4.0",
-    "kafkajs": "^2.2.3",
+    "kafkajs": "^2.2.4",
     "pad": "^3.2.0",
     "uuid": "^9.0.0",
     "yargs": "^17.6.2",
     "yn": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20"
   },
   "scripts": {
     "start": "node src/index.js"
