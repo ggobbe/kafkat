@@ -17,6 +17,10 @@ async function listTopics() {
     return await kafkaAdmin.listTopics();
 }
 
+async function fetchTopicMetadata(topics) {
+    return await kafkaAdmin.fetchTopicMetadata({ topics });
+}
+
 async function createTopic(topic, topicConfig) {
     return await kafkaAdmin.createTopics({
         waitForLeaders: true,
@@ -156,4 +160,5 @@ export default {
     consume,
     disconnect,
     deleteSingleConsumerGroup,
+    fetchTopicMetadata,
 };
